@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prestation{% endblock %}
+
+{% block body %}
+<div class="container text-center">
+
+<h1>Prestation</h1>
+
+<table class="table">
+    <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ prestation.id }}</td>
+            </tr>
+            <tr>
+                <th>Intitule</th>
+                <td>{{ prestation.intitule }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ prestation.price }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ prestation.image }}" alt="placehold.it/350x150"></td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ prestation.content }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('prestation_index') }}" class="btn btn-secondary">back to list</a>
+
+    <a href="{{ path('prestation_edit', {'id': prestation.id}) }}" class="btn btn-warning">edit</a>
+
+    {{ include('prestation/_delete_form.html.twig') }}
+    
+</div>
+{% endblock %}

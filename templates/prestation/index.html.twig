@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prestation index{% endblock %}
+{% block body %}
+
+<div class="container text-center" id="presentation">
+    <h1 class="text-center">Présentation</h1>
+    <img src="http://placehold.it/500x250" alt="">
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam minus, iste eos consequuntur soluta cum distinctio nesciunt magni omnis sint, ut est suscipit facilis expedita qui quas possimus illum quaerat!</p>
+</div>
+
+<hr>
+
+<div class="container text-center" id="gallerie">
+    <h1>Gallerie</h1>
+    {% include "gallery/index.html.twig" %}
+</div>
+
+<hr>
+
+<div class="container text-center" id="prestation">    
+    <h1 class="text-center">Prestation</h1>
+
+    <table class="table">
+        <thead class="text-center">
+            <tr>
+                <th>Intitule</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% include "/prestation/showAll.html.twig" %}
+        </tbody>
+    </table>
+    {% if app.user %}
+        {% if app.user.roles[0] == 'ADMIN' %}
+            <a href="{{ path('prestation_new') }}" class="btn btn-success">Nouvelle Prestation</a>
+        {% endif %}
+    {% endif %}
+    
+</div>
+
+<hr>
+
+<div class="container" id="contact">
+    <h1 class="text-center">Contact</h1>
+
+</div>
+
+{% block javascripts %} {% endblock %}
+{% endblock %}
+

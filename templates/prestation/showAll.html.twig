@@ -1,0 +1,29 @@
+{% for prestation in prestations %}
+            <tr class="text-center">
+                <td>{{ prestation.intitule }}</td>
+                <td>{{ prestation.price }} €</td>
+                <td>
+                    <a href="{{ path('rendez_vous_new') }}" class="btn btn-primary">Selectionner</a>
+                    
+                    <div class="btn-group dropdown" role="group">
+                        <a href="{{ path('prestation_show', {'id': prestation.id}) }}" class="btn btn-secondary">show</a>
+                        <button id="btnGroupDrop3" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="btnGroupDrop3">
+                            <img src="{{ prestation.image }}" alt="{{ prestation.image }}">
+                            <h3>Contenu de la prestation :</h3> 
+                            <p>{{ prestation.content | raw}}</p>
+                            <h5>Durée : 1h05</h5>
+                        </div>
+                    </div>
+                    {% if app.user %}
+                        {% if app.user.roles[0] == 'ADMIN' %}
+                            <a href="{{ path('prestation_edit', {'id': prestation.id}) }}" class="btn btn-warning">edit</a>
+                        {% endif %}
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+{% endfor %}

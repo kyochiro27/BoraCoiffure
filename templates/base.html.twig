@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Bienvenue chez Bora Coiffure{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% block stylesheets %}    {% endblock %}
+  </head>
+  <body>
+    {# DEBUT Barre de Navigation #}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+      {# DEBUT Logo #}
+      <a class="navbar-brand" href="{{ path('prestation_index')}}">Bryan Coiffure</a>
+      {# FIN Logo #}
+
+      {# DEBUT Bouton Toggler lors du retrecissement de la page #}
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {# FIN Bouton  Toggler lors du retrecissement de la page #}
+      
+      {# DEBUT des différents Liens du Menu #}
+      <div class="collapse navbar-collapse text-center justify-content-between" id="navbarColor01">
+        {# DEBUT 1ere liste de Liens positionnés a Gauche de la barre de Navigation #}
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ path('prestation_index')}}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('prestation_index')}}#gallerie">Gallerie</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('prestation_index')}}#prestation">Prestations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('prestation_index')}}#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('rendez_vous_new')}}">Prendre Rendez-Vous</a>
+          </li>
+        </ul>
+        {# FIN  1ere liste de Liens positionnés a Gauche de la barre de Navigation #}
+
+        {# DEBUT 2eme 1ere liste de Liens positionnés a Droite de la barre de Navigation  #}
+        <ul class="navbar-nav">
+          {# DEBUT de condition "IF" #}
+          {# Condition "IF" On affiche le lien "Deconnexion" seulement si un "Utilisateur" est connecté #}
+          {% if app.user %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_logout') }}">Deconnexion</a>
+            </li>
+          {# Condition "ELSE" On affiche les liens "Inscription" et "Connexion" seulement si aucun "Utilisateur" n'est connecté #}
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+            </li>
+          {% endif %}
+          {# FIN condition "IF" #}
+        </ul>
+        {# FIN 2eme liste de Liens positionnés a Droite de la barre de Navigation  #}
+      </div>
+      {# FIN des différents Liens du Menu #}
+    </nav>
+    {# FIN Barre de Navigation #}
+    
+    <div class="container">
+        {% block body %}{% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    {% block javascripts %}  {% endblock %}
+  </body>
+</html>

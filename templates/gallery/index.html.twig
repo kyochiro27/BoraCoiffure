@@ -1,0 +1,20 @@
+
+        <hr class="mt-2 mb-5">
+      
+        <div class="row text-center text-lg-left">
+        {% for image in galleries %}
+          <div class="col-lg-3 col-md-4 col-6">
+            <a href="{{ path('gallery_show', {'id': image.id}) }}" class="d-block mb-4 h-100">
+              <p>{{image.src}}</p>
+              <img class="img-fluid img-thumbnail" src="{{image.src}}" alt="{{ image.alt }}">
+              <img class="img-fluid img-thumbnail" src="{{ asset('assets/images/' ~ image.src)}}" alt="{{ image.alt }}">
+            </a>
+          </div>
+        {% endfor %}
+        </div>
+
+        {% if app.user %}
+          {% if app.user.roles[0] == 'ADMIN' %}
+            <a href="{{ path('gallery_new') }}" class="btn btn-success">Ajouter une image</a>
+          {% endif %}
+        {% endif %}
